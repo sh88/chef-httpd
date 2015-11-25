@@ -9,6 +9,9 @@ KeepAlive <%= node[:httpd][:keepalive] %>
 MaxKeepAliveRequests <%= node[:httpd][:keepalive_requests] %>
 KeepAliveTimeout <%= node[:httpd][:keepalive_timeout] %>
 
+MaxClients <%= node[:httpd][:max_request_workers] %>
+MaxRequestsPerChild <%= node[:httpd][:max_connections_per_child] %>
+
 <IfModule prefork.c>
 StartServers        <%= node[:httpd][:prefork][:start_servers] %>
 MinSpareServers     <%= node[:httpd][:prefork][:min_spare_servers] %>
