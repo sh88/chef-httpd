@@ -35,6 +35,7 @@ when "centos", "rhel"
   else
     server_package = "httpd"
     devel_package  = "httpd-devel"
+    service_name   = "httpd"
   end
 end
 
@@ -75,7 +76,7 @@ link "/usr/lib64/httpd" do
 end
 
 directory node[:httpd][:document_root] do
-  owner     node[:httpd][:owner]
+  owner     node[:httpd][:user]
   group     node[:httpd][:group]
   mode      0755
   recursive true

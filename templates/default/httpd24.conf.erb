@@ -17,7 +17,25 @@ KeepAliveTimeout <%= node[:httpd][:keepalive_timeout] %>
 MaxRequestWorkers <%= node[:httpd][:max_request_workers] %>
 MaxConnectionsPerChild <%= node[:httpd][:max_connections_per_child] %>
 
-User <%= node[:httpd][:owner] %>
+<IfModule prefork.c>
+StartServers        <%= node[:httpd][:prefork][:start_servers] %>
+MinSpareServers     <%= node[:httpd][:prefork][:min_spare_servers] %>
+MaxSpareServers     <%= node[:httpd][:prefork][:max_spare_servers] %>
+ServerLimit         <%= node[:httpd][:prefork][:server_limit] %>
+MaxClients          <%= node[:httpd][:prefork][:max_clients] %>
+MaxRequestsPerChild <%= node[:httpd][:prefork][:max_requests_per_child] %>
+</IfModule>
+
+<IfModule worker.c>
+StartServers         <%= node[:httpd][:worker][:start_servers] %>
+MaxClients           <%= node[:httpd][:worker][:max_clients] %>
+MinSpareThreads      <%= node[:httpd][:worker][:min_spare_threads] %>
+MaxSpareThreads      <%= node[:httpd][:worker][:max_spare_threads] %>
+ThreadsPerChild      <%= node[:httpd][:worker][:threads_per_child] %>
+MaxRequestsPerChild  <%= node[:httpd][:worker][:max_requests_per_child] %>
+</IfModule>
+
+User <%= node[:httpd][:user] %>
 Group <%= node[:httpd][:group] %>
 
 ServerAdmin <%= node[:httpd][:server_admin] %>

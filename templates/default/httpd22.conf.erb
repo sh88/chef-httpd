@@ -24,8 +24,8 @@ MaxRequestsPerChild <%= node[:httpd][:prefork][:max_requests_per_child] %>
 <IfModule worker.c>
 StartServers         <%= node[:httpd][:worker][:start_servers] %>
 MaxClients           <%= node[:httpd][:worker][:max_clients] %>
-MinSpareThreads      <%= node[:httpd][:worker][:min_spare_servers] %>
-MaxSpareThreads      <%= node[:httpd][:worker][:max_spare_servers] %>
+MinSpareThreads      <%= node[:httpd][:worker][:min_spare_threads] %>
+MaxSpareThreads      <%= node[:httpd][:worker][:max_spare_threads] %>
 ThreadsPerChild      <%= node[:httpd][:worker][:threads_per_child] %>
 MaxRequestsPerChild  <%= node[:httpd][:worker][:max_requests_per_child] %>
 </IfModule>
